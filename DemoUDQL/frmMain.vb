@@ -17,15 +17,15 @@
         Next
         Return Nothing
     End Function
-    Private Sub DanhMucToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DanhMucToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmDanhMuc.GetType())
+    Private Sub LoaiSanPhamToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoaiSanPhamToolStripMenuItem.Click
+        Dim frm As Form = TimForm(frmLoaiSanPham.GetType())
         If frm IsNot Nothing Then
             frm.Activate()
             frm.Show()
             Return
         End If
 
-        Dim frm1 As frmDanhMuc = New frmDanhMuc()
+        Dim frm1 As frmLoaiSanPham = New frmLoaiSanPham()
         frm1.MdiParent = Me
         frm1.WindowState = FormWindowState.Maximized
         frm1.Show()
@@ -47,15 +47,15 @@
         dsForm.Add(frm1)
     End Sub
 
-    Private Sub MonAnToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MonAnToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmMonAn.GetType())
+    Private Sub SanPhamToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanPhamToolStripMenuItem.Click
+        Dim frm As Form = TimForm(frmSanPham.GetType())
         If frm IsNot Nothing Then
             frm.Activate()
             frm.Show()
             Return
         End If
 
-        Dim frm1 As frmMonAn = New frmMonAn()
+        Dim frm1 As frmSanPham = New frmSanPham()
         frm1.MdiParent = Me
         frm1.WindowState = FormWindowState.Maximized
         frm1.Show()
