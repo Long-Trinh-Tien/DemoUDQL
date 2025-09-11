@@ -50,6 +50,11 @@
             Dim row_index As Integer = dgvLoaiSanPham.SelectedCells(0).RowIndex
             Dim loaiSanPhamView As DataRowView = dgvLoaiSanPham.Rows(row_index).DataBoundItem
             Dim loaiSanPham As DataRow = loaiSanPhamView.Row
+            Dim chuoi As String = String.Format("Ban co muon xoa {0} khong?", loaiSanPham("lsp_ten"))
+            Dim luaChon As DialogResult = MessageBox.Show(chuoi, "Thong bao", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If luaChon = DialogResult.No Then
+                Return
+            End If
             loaiSanPham("lsp_xoa") = True
             XL_DuLieu.GhiDuLieu("LoaiSanPham", dsLoaiSanPham)
             MessageBox.Show("Da xoa loai san pham", "Thong bao", MessageBoxButtons.OK)
