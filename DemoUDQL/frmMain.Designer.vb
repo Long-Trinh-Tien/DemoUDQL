@@ -39,7 +39,6 @@ Partial Class frmMain
         NhanVienToolStripMenuItem = New ToolStripMenuItem()
         KhachHangToolStripMenuItem = New ToolStripMenuItem()
         NhaCungCapToolStripMenuItem = New ToolStripMenuItem()
-        DanhMucToolStripMenuItem1 = New ToolStripMenuItem()
         BanHangToolStripMenuItem = New ToolStripMenuItem()
         DanhSachDonHangToolStripMenuItem = New ToolStripMenuItem()
         DanhSachPhieuChiToolStripMenuItem = New ToolStripMenuItem()
@@ -79,7 +78,7 @@ Partial Class frmMain
         ' 
         ' QuanLyToolStripMenuItem
         ' 
-        QuanLyToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {LoaiSanPhamToolStripMenuItem, SanPhamToolStripMenuItem, ToolStripSeparator2, LoaiNguyenLieuToolStripMenuItem, NguyenLieuToolStripMenuItem, ToolStripSeparator1, MenuToolStripMenuItem, NguyenLieuVaMonAnToolStripMenuItem, ToolStripSeparator3, NhanVienToolStripMenuItem, KhachHangToolStripMenuItem, NhaCungCapToolStripMenuItem, DanhMucToolStripMenuItem1})
+        QuanLyToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {LoaiSanPhamToolStripMenuItem, SanPhamToolStripMenuItem, ToolStripSeparator2, LoaiNguyenLieuToolStripMenuItem, NguyenLieuToolStripMenuItem, ToolStripSeparator1, MenuToolStripMenuItem, NguyenLieuVaMonAnToolStripMenuItem, ToolStripSeparator3, NhanVienToolStripMenuItem, KhachHangToolStripMenuItem, NhaCungCapToolStripMenuItem})
         QuanLyToolStripMenuItem.Name = "QuanLyToolStripMenuItem"
         QuanLyToolStripMenuItem.Size = New Size(73, 24)
         QuanLyToolStripMenuItem.Text = "Quan ly"
@@ -153,12 +152,6 @@ Partial Class frmMain
         NhaCungCapToolStripMenuItem.Size = New Size(244, 26)
         NhaCungCapToolStripMenuItem.Text = "Nha cung cap"
         ' 
-        ' DanhMucToolStripMenuItem1
-        ' 
-        DanhMucToolStripMenuItem1.Name = "DanhMucToolStripMenuItem1"
-        DanhMucToolStripMenuItem1.Size = New Size(244, 26)
-        DanhMucToolStripMenuItem1.Text = "Danh muc"
-        ' 
         ' BanHangToolStripMenuItem
         ' 
         BanHangToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {DanhSachDonHangToolStripMenuItem, DanhSachPhieuChiToolStripMenuItem})
@@ -230,6 +223,5 @@ Partial Class frmMain
     Friend WithEvents ThongTinPhanMemToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ThoatToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DanhSachPhieuChiToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents DanhMucToolStripMenuItem1 As ToolStripMenuItem
 
 End Class

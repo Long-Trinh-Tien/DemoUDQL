@@ -13,6 +13,15 @@ Module XL_DuLieu
         Return kq
     End Function
 
+    Public Function DocCautruc(ByVal sql As String) As DataTable
+        Dim kq As DataTable = New DataTable()
+        Dim KetNoi As OleDbConnection = New OleDbConnection(Chuoi_Ket_Noi)
+        Dim CauTruyVan As OleDbCommand = New OleDbCommand(sql, KetNoi)
+        Dim DongBo As OleDbDataAdapter = New OleDbDataAdapter(CauTruyVan)
+        DongBo.FillSchema(kq, SchemaType.Source)
+        Return kq
+    End Function
+
     Public Function GhiDuLieu(ByVal TenBang As String, ByVal dt As DataTable) As Integer
         Dim kq As DataTable = New DataTable()
         Dim KetNoi As OleDbConnection = New OleDbConnection(Chuoi_Ket_Noi)
