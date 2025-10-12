@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmDanhSachDonHang
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class frmBanHang
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmDanhSachDonHang
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         tbTimKiem = New TextBox()
         dtpNgayHienTai = New DateTimePicker()
@@ -35,12 +35,13 @@ Partial Class frmDanhSachDonHang
         ' 
         tbTimKiem.Location = New Point(12, 3)
         tbTimKiem.Name = "tbTimKiem"
+        tbTimKiem.PlaceholderText = "Enter dh_ma"
         tbTimKiem.Size = New Size(125, 27)
         tbTimKiem.TabIndex = 0
         ' 
         ' dtpNgayHienTai
         ' 
-        dtpNgayHienTai.CustomFormat = "DD/MM/YYYY"
+        dtpNgayHienTai.CustomFormat = "yyyy-MM-dd"
         dtpNgayHienTai.Location = New Point(152, 4)
         dtpNgayHienTai.Name = "dtpNgayHienTai"
         dtpNgayHienTai.Size = New Size(225, 27)
@@ -81,7 +82,7 @@ Partial Class frmDanhSachDonHang
         dgvDSDonHang.Size = New Size(753, 376)
         dgvDSDonHang.TabIndex = 4
         ' 
-        ' frmDanhSachDonHang
+        ' frmBanHang
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
@@ -92,8 +93,8 @@ Partial Class frmDanhSachDonHang
         Controls.Add(cbChiNhanh)
         Controls.Add(dtpNgayHienTai)
         Controls.Add(tbTimKiem)
-        Name = "frmDanhSachDonHang"
-        Text = "frmDanhSachDonHang"
+        Name = "frmBanHang"
+        Text = "frmBanHang"
         CType(dgvDSDonHang, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()

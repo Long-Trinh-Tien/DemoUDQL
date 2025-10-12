@@ -211,4 +211,19 @@
         frm1.Show()
         dsForm.Add(frm1)
     End Sub
+
+    Private Sub BanHangToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BanHangToolStripMenuItem1.Click
+        Dim frm As Form = TimForm(frmBanHang.GetType())
+        If frm IsNot Nothing Then
+            frm.Activate()
+            frm.Show()
+            Return
+        End If
+
+        Dim frm1 As frmBanHang = New frmBanHang()
+        frm1.MdiParent = Me
+        frm1.WindowState = FormWindowState.Maximized
+        frm1.Show()
+        dsForm.Add(frm1)
+    End Sub
 End Class

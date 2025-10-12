@@ -44,6 +44,7 @@ Partial Class frmMain
         DanhSachPhieuChiToolStripMenuItem = New ToolStripMenuItem()
         KhoToolStripMenuItem = New ToolStripMenuItem()
         DanhSachPhieuNhapToolStripMenuItem = New ToolStripMenuItem()
+        BanHangToolStripMenuItem1 = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -154,7 +155,7 @@ Partial Class frmMain
         ' 
         ' BanHangToolStripMenuItem
         ' 
-        BanHangToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {DanhSachDonHangToolStripMenuItem, DanhSachPhieuChiToolStripMenuItem})
+        BanHangToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {DanhSachDonHangToolStripMenuItem, DanhSachPhieuChiToolStripMenuItem, BanHangToolStripMenuItem1})
         BanHangToolStripMenuItem.Name = "BanHangToolStripMenuItem"
         BanHangToolStripMenuItem.Size = New Size(85, 24)
         BanHangToolStripMenuItem.Text = "Ban hang"
@@ -183,6 +184,12 @@ Partial Class frmMain
         DanhSachPhieuNhapToolStripMenuItem.Name = "DanhSachPhieuNhapToolStripMenuItem"
         DanhSachPhieuNhapToolStripMenuItem.Size = New Size(238, 26)
         DanhSachPhieuNhapToolStripMenuItem.Text = "Danh sach phieu nhap"
+        ' 
+        ' BanHangToolStripMenuItem1
+        ' 
+        BanHangToolStripMenuItem1.Name = "BanHangToolStripMenuItem1"
+        BanHangToolStripMenuItem1.Size = New Size(227, 26)
+        BanHangToolStripMenuItem1.Text = "Ban Hang"
         ' 
         ' frmMain
         ' 
@@ -223,5 +230,6 @@ Partial Class frmMain
     Friend WithEvents ThongTinPhanMemToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ThoatToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DanhSachPhieuChiToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BanHangToolStripMenuItem1 As ToolStripMenuItem
 
 End Class
