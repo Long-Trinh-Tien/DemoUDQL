@@ -39,10 +39,6 @@
          where cn_ma = dh_chi_nhanh and ttdh_ma = dh_trang_thai
          and dh_chi_nhanh = {0} and DateValue(dh_ngay) = #{1}# {2}",
         cbChiNhanh.SelectedValue, dtpNgayHienTai.Value.ToString("yyyy-MM-dd"), searchCondition)
-        'Dim str As String = "SELECT * FROM DonHang"
-
-        Debug.Print(str)
-        Debug.Print("SelectedValue: " & cbChiNhanh.SelectedValue)
 
         dgvDSDonHang.DataSource = XL_DuLieu.DocDuLieu(str)
     End Sub

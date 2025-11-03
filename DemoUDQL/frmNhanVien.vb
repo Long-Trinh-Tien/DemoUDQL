@@ -4,7 +4,7 @@
     Dim dsNhanVienView As DataView
     Dim dsTaiKhoan As DataTable
     Sub HienThiDSNhanVien()
-        Dim truy_van As String = "SELECT nv_ma, nv_ten, nv_dia_chi, nv_gioi_tinh, nv_xoa, nv_ma_tai_khoan, tk_tai_khoan, tk_mat_khau from NhanVien, TaiKhoan where nv_ma_tai_khoan = tk_ma and nv_xoa = " + cbHienThiXoa.Checked.ToString().ToLower()
+        Dim truy_van As String = "SELECT nv_ma, nv_ten, nv_dia_chi, nv_gioi_tinh, nv_xoa, nv_ma_tai_khoan, tk_tai_khoan, tk_mat_khau, tk_dang_nhap_loi from NhanVien, TaiKhoan where nv_ma_tai_khoan = tk_ma and nv_xoa = " + cbHienThiXoa.Checked.ToString().ToLower()
         dsNhanVien = XL_DuLieu.DocDuLieu(truy_van)
         dsNhanVienView = New DataView(dsNhanVien)
         dgvDanhSach.DataSource = dsNhanVienView
@@ -12,6 +12,7 @@
         dgvDanhSach.Columns(4).Visible = False
         dgvDanhSach.Columns(5).Visible = False
         dgvDanhSach.Columns(7).Visible = False
+        dgvDanhSach.Columns(8).Visible = False
 
         dgvDanhSach.Columns(3).HeaderText = "Nam"
 
@@ -27,6 +28,7 @@
         taiKhoan("tk_tai_khoan") = tbTaiKhoan.Text
         taiKhoan("tk_mat_khau") = Util.getHash(tbMatKhau.Text)
         taiKhoan("tk_xoa") = False
+        taiKhoan("tk_dang_nhap_loi") = 0
 
         dsTaiKhoan.Rows.Add(taiKhoan)
         XL_DuLieu.GhiDuLieu("TaiKhoan", dsTaiKhoan)
@@ -40,6 +42,7 @@
         nhanVien("tk_tai_khoan") = taiKhoan("tk_tai_khoan")
         nhanVien("tk_mat_khau") = taiKhoan("tk_mat_khau")
 
+
         dsNhanVien.Rows.Add(nhanVien)
         XL_DuLieu.GhiDuLieu("NhanVien", dsNhanVien)
         MessageBox.Show("Thêm nhân viên thành công", "Thong bao", MessageBoxButtons.OK)
@@ -47,20 +50,20 @@
     End Sub
 
     Private Sub dgvDanhSach_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDanhSach.CellContentClick
-        If dgvDanhSach.SelectedCells.Count > 0 Then
-            Dim row As Integer = dgvDanhSach.SelectedCells(0).RowIndex
-            Dim nhanVienView As DataRowView = dgvDanhSach.Rows(row).DataBoundItem
-            Dim nhanVien As DataRow = nhanVienView.Row
-            tbTen.Text = nhanVien("nv_ten")
-            'cbLoainhanVien.SelectedIndex = cbLoainhanVien.FindStringExact(dgvDanhSach.Rows(row).Cells(3).Value.ToString())
-            tbDiaChi.Text = nhanVien("nv_dia_chi")
-            If nhanVien("nv_gioi_tinh") = True Then
-                rbNam.Checked = True
-            Else
-                rbNu.Checked = True
-            End If
-            tbTaiKhoan.Text = nhanVien("tk_tai_khoan")
-        End If
+        'If dgvDanhSach.SelectedCells.Count > 0 Then
+        '    Dim row As Integer = dgvDanhSach.SelectedCells(0).RowIndex
+        '    Dim nhanVienView As DataRowView = dgvDanhSach.Rows(row).DataBoundItem
+        '    Dim nhanVien As DataRow = nhanVienView.Row
+        '    tbTen.Text = nhanVien("nv_ten")
+        '    'cbLoainhanVien.SelectedIndex = cbLoainhanVien.FindStringExact(dgvDanhSach.Rows(row).Cells(3).Value.ToString())
+        '    tbDiaChi.Text = nhanVien("nv_dia_chi")
+        '    If nhanVien("nv_gioi_tinh") = True Then
+        '        rbNam.Checked = True
+        '    Else
+        '        rbNu.Checked = True
+        '    End If
+        '    tbTaiKhoan.Text = nhanVien("tk_tai_khoan")
+        'End If
     End Sub
 
     Private Sub bCapNhat_Click(sender As Object, e As EventArgs) Handles bCapNhat.Click
@@ -104,6 +107,7 @@
             End If
             nhanVien("nv_xoa") = True
             XL_DuLieu.GhiDuLieu("nhanVien", dsNhanVien)
+
             MessageBox.Show("Da xoa nhan vien", "Thong bao", MessageBoxButtons.OK)
             dsNhanVien.Rows.Remove(nhanVien)
             dgvDanhSach.Refresh()
@@ -150,6 +154,23 @@
             dsNhanVienView.RowFilter = ""
         Else
             dsNhanVienView.RowFilter = String.Format("nv_ten LIKE '%{0}%' OR nv_dia_chi LIKE '%{0}%'", tbTimKiem.Text)
+        End If
+    End Sub
+
+    Private Sub dgvDanhSach_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDanhSach.CellClick
+        If dgvDanhSach.SelectedCells.Count > 0 Then
+            Dim row As Integer = dgvDanhSach.SelectedCells(0).RowIndex
+            Dim nhanVienView As DataRowView = dgvDanhSach.Rows(row).DataBoundItem
+            Dim nhanVien As DataRow = nhanVienView.Row
+            tbTen.Text = nhanVien("nv_ten")
+            'cbLoainhanVien.SelectedIndex = cbLoainhanVien.FindStringExact(dgvDanhSach.Rows(row).Cells(3).Value.ToString())
+            tbDiaChi.Text = nhanVien("nv_dia_chi")
+            If nhanVien("nv_gioi_tinh") = True Then
+                rbNam.Checked = True
+            Else
+                rbNu.Checked = True
+            End If
+            tbTaiKhoan.Text = nhanVien("tk_tai_khoan")
         End If
     End Sub
 End Class

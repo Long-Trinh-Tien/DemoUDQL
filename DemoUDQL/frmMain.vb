@@ -1,8 +1,18 @@
 ﻿Public Class frmMain
     Dim dsForm As List(Of Form)
+    Dim NhanVien As DataRow
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dsForm = New List(Of Form)()
+        Me.Hide()
+        Dim frm As frmDangNhap = New frmDangNhap()
+        Dim dr As DialogResult = frm.ShowDialog()
+        If dr = DialogResult.OK Then
+            NhanVien = frm.NhanVien
+            Me.Show()
+        Else
+            Me.Close()
+        End If
     End Sub
 
     Function TimForm(type As Type)
@@ -30,6 +40,21 @@
         frm1.WindowState = FormWindowState.Maximized
         frm1.Show()
         dsForm.Add(frm1)
+    End Sub
+
+    Private Sub OpenForm(Of T As {Form, New})()
+        Dim frm As Form = TimForm(GetType(T))
+        If frm IsNot Nothing Then
+            frm.Activate()
+            frm.Show()
+            Return
+        End If
+
+        Dim newFrm As New T()
+        newFrm.MdiParent = Me
+        newFrm.WindowState = FormWindowState.Maximized
+        newFrm.Show()
+        dsForm.Add(newFrm)
     End Sub
 
     Private Sub ThongTinPhanMemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThongTinPhanMemToolStripMenuItem.Click
@@ -225,5 +250,9 @@
         frm1.WindowState = FormWindowState.Maximized
         frm1.Show()
         dsForm.Add(frm1)
+    End Sub
+
+    Private Sub DangNhapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DangNhapToolStripMenuItem.Click
+        OpenForm(Of frmDangNhap)()
     End Sub
 End Class
