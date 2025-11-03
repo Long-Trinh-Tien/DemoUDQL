@@ -21,27 +21,31 @@
         cbChiNhanh.DataSource = dsChiNhanh
     End Sub
 
-    'Public Sub HienThiDSDonHang_TimKiem()
-    '    If cbChiNhanh.SelectedIndex < 0 Then
-    '        Return
-    '    End If
+    Public Sub HienThiDSDonHang_TimKiem()
+        If cbChiNhanh.SelectedIndex < 0 Then
+            Return
+        End If
 
-    '    Dim maDonHangTimKiem As String = tbTimKiem.Text.Trim()
+        Dim maDonHangTimKiem As String = tbTimKiem.Text.Trim()
 
-    '    Dim searchCondition As String = ""
-    '    If Not String.IsNullOrEmpty(maDonHangTimKiem) Then
-    '        searchCondition = String.Format(" AND CStr(dh_ma) LIKE '*{0}*'", maDonHangTimKiem)
-    '    End If
+        Dim searchCondition As String = ""
+        If Not String.IsNullOrEmpty(maDonHangTimKiem) Then
+            searchCondition = String.Format(" AND CStr(dh_ma) LIKE '%{0}%'", maDonHangTimKiem)
+        End If
 
-    '    Dim str As String = String.Format(
-    '    "SELECT *
-    '     FROM DonHang, ChiNhanh, TrangThaiDonHang
-    '     where cn_ma = dh_chi_nhanh and ttdh_ma = dh_trang_thai
-    '     and dh_chi_nhanh = {0} and DateValue(dh_ngay) = #{1}# {2}",
-    '    cbChiNhanh.SelectedValue, dtpNgayHienTai.Value.ToString("yyyy-MM-dd"), searchCondition)
+        Dim str As String = String.Format(
+        "SELECT *
+         FROM DonHang, ChiNhanh, TrangThaiDonHang
+         where cn_ma = dh_chi_nhanh and ttdh_ma = dh_trang_thai
+         and dh_chi_nhanh = {0} and DateValue(dh_ngay) = #{1}# {2}",
+        cbChiNhanh.SelectedValue, dtpNgayHienTai.Value.ToString("yyyy-MM-dd"), searchCondition)
+        'Dim str As String = "SELECT * FROM DonHang"
 
-    '    dgvDSDonHang.DataSource = XL_DuLieu.DocDuLieu(str)
-    'End Sub
+        Debug.Print(str)
+        Debug.Print("SelectedValue: " & cbChiNhanh.SelectedValue)
+
+        dgvDSDonHang.DataSource = XL_DuLieu.DocDuLieu(str)
+    End Sub
 
     Public Sub HienThiDSDonHang()
         If cbChiNhanh.SelectedIndex < 0 Then
