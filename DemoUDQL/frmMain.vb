@@ -58,201 +58,46 @@
     End Sub
 
     Private Sub ThongTinPhanMemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThongTinPhanMemToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmThongTinPhanMem.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmThongTinPhanMem = New frmThongTinPhanMem()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
+        OpenForm(Of frmThongTinPhanMem)()
     End Sub
 
     Private Sub SanPhamToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanPhamToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmSanPham.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmSanPham = New frmSanPham()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
-    End Sub
-
-    Private Sub LoaiNguyenLieuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoaiNguyenLieuToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmLoaiNguyenLieu.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmLoaiNguyenLieu = New frmLoaiNguyenLieu()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
-    End Sub
-
-    Private Sub NguyenLieuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NguyenLieuToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmNguyenLieu.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmNguyenLieu = New frmNguyenLieu()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
-    End Sub
-
-    Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmMenu.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmMenu = New frmMenu()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
-    End Sub
-
-    Private Sub NguyenLieuVaMonAnToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NguyenLieuVaMonAnToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmNguyenLieuVaMonAn.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmNguyenLieuVaMonAn = New frmNguyenLieuVaMonAn()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
+        OpenForm(Of frmSanPham)()
     End Sub
 
     Private Sub NhanVienToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NhanVienToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmNhanVien.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmNhanVien = New frmNhanVien()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
+        OpenForm(Of frmNhanVien)()
     End Sub
 
     Private Sub KhachHangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles KhachHangToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmKhachHang.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmKhachHang = New frmKhachHang()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
+        OpenForm(Of frmKhachHang)()
     End Sub
 
     Private Sub NhaCungCapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NhaCungCapToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmNhaCungCap.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmNhaCungCap = New frmNhaCungCap()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
+        OpenForm(Of frmNhaCungCap)()
     End Sub
 
     Private Sub DanhSachDonHangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DanhSachDonHangToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmDanhSachDonHang.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmDanhSachDonHang = New frmDanhSachDonHang()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
+        OpenForm(Of frmDanhSachDonHang)()
     End Sub
 
     Private Sub DanhSachPhieuChiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DanhSachPhieuChiToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmDanhSachPhieuChi.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmDanhSachPhieuChi = New frmDanhSachPhieuChi()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
+        OpenForm(Of frmDanhSachPhieuChi)()
     End Sub
 
     Private Sub DanhSachPhieuNhapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DanhSachPhieuNhapToolStripMenuItem.Click
-        Dim frm As Form = TimForm(frmDanhSachPhieuNhap.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmDanhSachPhieuNhap = New frmDanhSachPhieuNhap()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
+        OpenForm(Of frmDanhSachPhieuNhap)()
     End Sub
 
     Private Sub BanHangToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BanHangToolStripMenuItem1.Click
-        Dim frm As Form = TimForm(frmBanHang.GetType())
-        If frm IsNot Nothing Then
-            frm.Activate()
-            frm.Show()
-            Return
-        End If
-
-        Dim frm1 As frmBanHang = New frmBanHang()
-        frm1.MdiParent = Me
-        frm1.WindowState = FormWindowState.Maximized
-        frm1.Show()
-        dsForm.Add(frm1)
+        OpenForm(Of frmBanHang)()
     End Sub
 
-    Private Sub DangNhapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DangNhapToolStripMenuItem.Click
+    Private Sub DangNhapToolStripMenuItem_Click(sender As Object, e As EventArgs)
         OpenForm(Of frmDangNhap)()
+    End Sub
+
+    Private Sub ThongKeDoanhThuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThongKeDoanhThuToolStripMenuItem.Click
+        OpenForm(Of frmThongKeDoanhThu)()
     End Sub
 End Class

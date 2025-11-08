@@ -34,23 +34,28 @@ Partial Class frmDangNhap
         ' 
         ' tbTenDangNhap
         ' 
-        tbTenDangNhap.Location = New Point(253, 65)
+        tbTenDangNhap.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        tbTenDangNhap.Location = New Point(258, 121)
         tbTenDangNhap.Name = "tbTenDangNhap"
         tbTenDangNhap.Size = New Size(246, 27)
         tbTenDangNhap.TabIndex = 0
+        tbTenDangNhap.Text = "test2"
         ' 
         ' tbMatKhau
         ' 
-        tbMatKhau.Location = New Point(253, 137)
+        tbMatKhau.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        tbMatKhau.Location = New Point(258, 193)
         tbMatKhau.Name = "tbMatKhau"
         tbMatKhau.PasswordChar = "*"c
         tbMatKhau.Size = New Size(246, 27)
         tbMatKhau.TabIndex = 0
+        tbMatKhau.Text = "1"
         ' 
         ' Label1
         ' 
+        Label1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         Label1.AutoSize = True
-        Label1.Location = New Point(143, 67)
+        Label1.Location = New Point(148, 123)
         Label1.Name = "Label1"
         Label1.Size = New Size(53, 20)
         Label1.TabIndex = 1
@@ -58,8 +63,9 @@ Partial Class frmDangNhap
         ' 
         ' Label2
         ' 
+        Label2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         Label2.AutoSize = True
-        Label2.Location = New Point(136, 68)
+        Label2.Location = New Point(141, 124)
         Label2.Name = "Label2"
         Label2.Size = New Size(112, 20)
         Label2.TabIndex = 1
@@ -67,8 +73,9 @@ Partial Class frmDangNhap
         ' 
         ' Label9
         ' 
+        Label9.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         Label9.AutoSize = True
-        Label9.Location = New Point(136, 140)
+        Label9.Location = New Point(141, 196)
         Label9.Name = "Label9"
         Label9.Size = New Size(72, 20)
         Label9.TabIndex = 1
@@ -76,7 +83,8 @@ Partial Class frmDangNhap
         ' 
         ' bDangNhap
         ' 
-        bDangNhap.Location = New Point(590, 63)
+        bDangNhap.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        bDangNhap.Location = New Point(595, 119)
         bDangNhap.Name = "bDangNhap"
         bDangNhap.Size = New Size(94, 29)
         bDangNhap.TabIndex = 2
@@ -85,7 +93,8 @@ Partial Class frmDangNhap
         ' 
         ' bThoat
         ' 
-        bThoat.Location = New Point(590, 140)
+        bThoat.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        bThoat.Location = New Point(595, 196)
         bThoat.Name = "bThoat"
         bThoat.Size = New Size(94, 29)
         bThoat.TabIndex = 2
@@ -94,8 +103,9 @@ Partial Class frmDangNhap
         ' 
         ' lKetQua
         ' 
+        lKetQua.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         lKetQua.AutoSize = True
-        lKetQua.Location = New Point(334, 223)
+        lKetQua.Location = New Point(339, 279)
         lKetQua.Name = "lKetQua"
         lKetQua.Size = New Size(82, 20)
         lKetQua.TabIndex = 1
@@ -114,6 +124,9 @@ Partial Class frmDangNhap
         Controls.Add(Label1)
         Controls.Add(tbMatKhau)
         Controls.Add(tbTenDangNhap)
+        FormBorderStyle = FormBorderStyle.FixedDialog
+        MaximizeBox = False
+        MinimizeBox = False
         Name = "frmDangNhap"
         Text = "frmDangNhap"
         ResumeLayout(False)
