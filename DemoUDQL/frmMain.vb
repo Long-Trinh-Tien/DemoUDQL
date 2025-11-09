@@ -100,4 +100,8 @@
     Private Sub ThongKeDoanhThuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThongKeDoanhThuToolStripMenuItem.Click
         OpenForm(Of frmThongKeDoanhThu)()
     End Sub
+
+    Private Sub TonKhoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TonKhoToolStripMenuItem.Click
+        OpenForm(Of frmTonKho)()
+    End Sub
 End Class

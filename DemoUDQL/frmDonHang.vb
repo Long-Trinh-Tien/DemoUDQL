@@ -65,13 +65,43 @@
         End If
         Dim san_pham As DataRow = dsSanPham(dgvDSSanPham.SelectedCells(0).RowIndex)
         Dim ctdhs() As DataRow = dsChiTietDonHang.Select(String.Format("ctdh_ma_san_pham = " + san_pham("sp_ma").ToString()))
+        ' --- Lấy tồn kho hiện tại ---
+        Dim strQuery As String = String.Format(
+        "SELECT tk_so_luong FROM TonKho WHERE tk_san_pham = {0} AND tk_chi_nhanh = {1}",
+        san_pham("sp_ma"), chi_nhanh("cn_ma"))
+        Dim dsTonKho As DataTable = XL_DuLieu.DocDuLieu(strQuery)
+
+        If dsTonKho Is Nothing OrElse dsTonKho.Rows.Count = 0 Then
+            MessageBox.Show("Sản phẩm mã " & san_pham("sp_ma") & " không tồn tại trong kho chi nhánh.", "Cảnh báo tồn kho", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim ton_hien_tai As Integer = CInt(dsTonKho.Rows(0)("tk_so_luong"))
+
+
         If ctdhs.Length > 0 Then
             Dim chi_tiet As DataRow = ctdhs(0)
-            chi_tiet("ctdh_so_luong") = chi_tiet("ctdh_so_luong") + 1
+            Dim so_luong_moi As Integer = CInt(chi_tiet("ctdh_so_luong")) + 1
+
+            If so_luong_moi > ton_hien_tai Then
+                MessageBox.Show("Không đủ tồn kho cho sản phẩm mã " & san_pham("sp_ma") &
+                            vbCrLf & "Tồn hiện tại: " & ton_hien_tai &
+                            vbCrLf & "Số lượng yêu cầu: " & so_luong_moi,
+                            "Lỗi tồn kho", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+            chi_tiet("ctdh_so_luong") = so_luong_moi
             chi_tiet("ctdh_tong_tien") = chi_tiet("ctdh_so_luong") * chi_tiet("ctdh_gia")
             chi_tiet("ctdh_tong_san_pham") = chi_tiet("ctdh_tong_tien")
             chi_tiet("ctdh_khuyen_mai") = 0
         Else
+            ' Nếu thêm mới thì kiểm tra tồn kho >= 1
+            If ton_hien_tai < 1 Then
+                MessageBox.Show("Không đủ tồn kho cho sản phẩm mã " & san_pham("sp_ma"),
+                            "Lỗi tồn kho", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
             Dim chi_tiet As DataRow = dsChiTietDonHang.NewRow()
             chi_tiet("ctdh_ma_san_pham") = san_pham("sp_ma")
             chi_tiet("ctdh_gia") = san_pham("bgct_gia")
@@ -137,8 +167,21 @@
         For Each ctdh As DataRow In dsChiTietDonHang.Rows
             ctdh("ctdh_ma_don_hang") = don_hang("dh_ma")
         Next
+        ' --- CẬP NHẬT TỒN KHO ---
+        If Not IsNothing(Me.Tag) AndAlso TypeOf Me.Tag Is frmBanHang Then
+            Dim frmBanHangParent As frmBanHang = CType(Me.Tag, frmBanHang)
 
+            ' Gọi hàm cập nhật tồn kho
+            Dim ok As Boolean = frmBanHangParent.CapNhatTonKhoBanHang(dsChiTietDonHang)
+
+            If Not ok Then
+                ' Nếu lỗi tồn kho thì không ghi dữ liệu chi tiết đơn hàng
+                Exit Sub
+            End If
+        End If
+        ' ------------------------------------------
         XL_DuLieu.GhiDuLieu("ChiTietDonHang", dsChiTietDonHang)
+
         TatManHinh()
     End Sub
 

@@ -121,4 +121,48 @@
     Private Sub tbTimKiem_TextChanged(sender As Object, e As EventArgs) Handles tbTimKiem.TextChanged
         HienThiDSDonHang_TimKiem()
     End Sub
+
+    ' --- LOGIC CẬP NHẬT TỒN KHO ---
+    Function CapNhatTonKhoBanHang(ByVal dsChiTiet As DataTable) As Boolean
+        Dim cn_ma As Int32 = cbChiNhanh.SelectedItem("cn_ma")
+
+        For Each ctdh As DataRow In dsChiTiet.Rows
+            ' Chi tru ton kho doi voi cac dong KHONG bi xoa hoan toan (DataRowState <> Deleted)
+            If ctdh.RowState <> DataRowState.Deleted Then
+                Dim sp_ma As Integer = CInt(ctdh("ctdh_ma_san_pham"))
+                Dim so_luong_giam As Integer = CInt(ctdh("ctdh_so_luong"))
+
+                ' 1. Doc TonKho hien tai
+                Dim strQuery As String = String.Format(
+                    "SELECT * FROM TonKho WHERE tk_san_pham = {0} AND tk_chi_nhanh = {1}",
+                    sp_ma, cn_ma)
+                Dim dsTonKho As DataTable = XL_DuLieu.DocDuLieu(strQuery)
+
+                If dsTonKho Is Nothing OrElse dsTonKho.Rows.Count = 0 Then
+                    MessageBox.Show("Sản phẩm mã " & sp_ma & " không tồn tại trong kho chi nhánh để bán.", "Cảnh báo tồn kho", MessageBoxButtons.OK)
+                    Continue For
+                End If
+
+                ' 2. Kiểm tra số lượng
+                Dim tk_row As DataRow = dsTonKho.Rows(0)
+                Dim ton_hien_tai As Integer = CInt(tk_row("tk_so_luong"))
+
+                If ton_hien_tai - so_luong_giam < 0 Then
+                    MessageBox.Show("Sản phẩm mã " & sp_ma & " không đủ tồn kho để bán." &
+                                vbCrLf & "Tồn hiện tại: " & ton_hien_tai &
+                                vbCrLf & "Số lượng yêu cầu: " & so_luong_giam,
+                                "Lỗi tồn kho", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+
+                ' 3. Cập nhật số lượng
+                tk_row("tk_so_luong") = ton_hien_tai - so_luong_giam
+                tk_row("tk_ngay_cap_nhat") = DateTime.Now
+
+                XL_DuLieu.GhiDuLieu("TonKho", dsTonKho)
+            End If
+        Next
+        Return True
+    End Function
+    ' ------------------------------
 End Class
