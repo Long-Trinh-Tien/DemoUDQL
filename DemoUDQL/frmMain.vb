@@ -1,6 +1,7 @@
 ﻿Public Class frmMain
     Dim dsForm As List(Of Form)
     Dim NhanVien As DataRow
+    Dim isAdmin As Boolean
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dsForm = New List(Of Form)()
@@ -9,6 +10,10 @@
         Dim dr As DialogResult = frm.ShowDialog()
         If dr = DialogResult.OK Then
             NhanVien = frm.NhanVien
+            isAdmin = frm.isAdmin
+            '' Lưu lại để dùng sau
+            'Me.Tag = isAdmin
+            dsForm.Add(frm)
             Me.Show()
         Else
             Me.Close()
@@ -42,7 +47,7 @@
         dsForm.Add(frm1)
     End Sub
 
-    Private Sub OpenForm(Of T As {Form, New})()
+    Private Sub OpenForm(Of T As {Form, New})(Optional isAdmin As Boolean = False)
         Dim frm As Form = TimForm(GetType(T))
         If frm IsNot Nothing Then
             frm.Activate()
@@ -51,6 +56,7 @@
         End If
 
         Dim newFrm As New T()
+        newFrm.Tag = isAdmin
         newFrm.MdiParent = Me
         newFrm.WindowState = FormWindowState.Maximized
         newFrm.Show()
@@ -66,7 +72,7 @@
     End Sub
 
     Private Sub NhanVienToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NhanVienToolStripMenuItem.Click
-        OpenForm(Of frmNhanVien)()
+        OpenForm(Of frmNhanVien)(isAdmin)
     End Sub
 
     Private Sub KhachHangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles KhachHangToolStripMenuItem.Click

@@ -1,5 +1,12 @@
 ﻿Public Class frmDangNhap
     Public NhanVien As DataRow
+    ' Property để kiểm tra quyền admin
+    Public ReadOnly Property isAdmin As Boolean
+        Get
+            If NhanVien Is Nothing Then Return False
+            Return CInt(NhanVien("nv_ma_loai_nhan_vien")) = 1 '1 is admin
+        End Get
+    End Property
     Private Sub bDangNhap_Click(sender As Object, e As EventArgs) Handles bDangNhap.Click
         Dim TenDangNhap As String = tbTenDangNhap.Text
         Dim MatKhau As String = Util.getHash(tbMatKhau.Text)

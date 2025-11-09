@@ -41,6 +41,10 @@ Partial Class frmNhanVien
         tbDiaChi = New TextBox()
         tbTen = New TextBox()
         Panel1 = New Panel()
+        cbLoaiNhanVien = New ComboBox()
+        bCapNhatRole = New Button()
+        lIsAdmin = New Label()
+        Label5 = New Label()
         TableLayoutPanel1 = New TableLayoutPanel()
         CType(dgvDanhSach, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
@@ -59,14 +63,14 @@ Partial Class frmNhanVien
         ' 
         ' tbTaiKhoan
         ' 
-        tbTaiKhoan.Location = New Point(289, 206)
+        tbTaiKhoan.Location = New Point(289, 245)
         tbTaiKhoan.Name = "tbTaiKhoan"
         tbTaiKhoan.Size = New Size(125, 27)
         tbTaiKhoan.TabIndex = 1
         ' 
         ' tbMatKhau
         ' 
-        tbMatKhau.Location = New Point(289, 256)
+        tbMatKhau.Location = New Point(289, 295)
         tbMatKhau.Name = "tbMatKhau"
         tbMatKhau.PasswordChar = "*"c
         tbMatKhau.Size = New Size(125, 27)
@@ -74,7 +78,7 @@ Partial Class frmNhanVien
         ' 
         ' bThem
         ' 
-        bThem.Location = New Point(156, 328)
+        bThem.Location = New Point(156, 344)
         bThem.Name = "bThem"
         bThem.Size = New Size(94, 29)
         bThem.TabIndex = 2
@@ -83,7 +87,7 @@ Partial Class frmNhanVien
         ' 
         ' bCapNhat
         ' 
-        bCapNhat.Location = New Point(294, 328)
+        bCapNhat.Location = New Point(294, 344)
         bCapNhat.Name = "bCapNhat"
         bCapNhat.Size = New Size(94, 29)
         bCapNhat.TabIndex = 2
@@ -92,7 +96,7 @@ Partial Class frmNhanVien
         ' 
         ' bXoa
         ' 
-        bXoa.Location = New Point(412, 328)
+        bXoa.Location = New Point(412, 344)
         bXoa.Name = "bXoa"
         bXoa.Size = New Size(94, 29)
         bXoa.TabIndex = 2
@@ -185,7 +189,7 @@ Partial Class frmNhanVien
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(150, 206)
+        Label3.Location = New Point(150, 245)
         Label3.Name = "Label3"
         Label3.Size = New Size(74, 20)
         Label3.TabIndex = 7
@@ -194,7 +198,7 @@ Partial Class frmNhanVien
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(150, 256)
+        Label4.Location = New Point(150, 295)
         Label4.Name = "Label4"
         Label4.Size = New Size(73, 20)
         Label4.TabIndex = 7
@@ -216,9 +220,13 @@ Partial Class frmNhanVien
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(cbLoaiNhanVien)
+        Panel1.Controls.Add(bCapNhatRole)
         Panel1.Controls.Add(bXoa)
         Panel1.Controls.Add(Label4)
         Panel1.Controls.Add(tbTen)
+        Panel1.Controls.Add(lIsAdmin)
+        Panel1.Controls.Add(Label5)
         Panel1.Controls.Add(Label3)
         Panel1.Controls.Add(tbDiaChi)
         Panel1.Controls.Add(Label2)
@@ -236,11 +244,46 @@ Partial Class frmNhanVien
         Panel1.Size = New Size(635, 444)
         Panel1.TabIndex = 8
         ' 
+        ' cbLoaiNhanVien
+        ' 
+        cbLoaiNhanVien.FormattingEnabled = True
+        cbLoaiNhanVien.Location = New Point(289, 206)
+        cbLoaiNhanVien.Name = "cbLoaiNhanVien"
+        cbLoaiNhanVien.Size = New Size(125, 28)
+        cbLoaiNhanVien.TabIndex = 8
+        ' 
+        ' bCapNhatRole
+        ' 
+        bCapNhatRole.Location = New Point(438, 205)
+        bCapNhatRole.Name = "bCapNhatRole"
+        bCapNhatRole.Size = New Size(123, 29)
+        bCapNhatRole.TabIndex = 2
+        bCapNhatRole.Text = "Cap nhat role"
+        bCapNhatRole.UseVisualStyleBackColor = True
+        ' 
+        ' lIsAdmin
+        ' 
+        lIsAdmin.AutoSize = True
+        lIsAdmin.Location = New Point(495, 15)
+        lIsAdmin.Name = "lIsAdmin"
+        lIsAdmin.Size = New Size(94, 20)
+        lIsAdmin.TabIndex = 7
+        lIsAdmin.Text = "Admin role ?"
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(150, 209)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(73, 20)
+        Label5.TabIndex = 7
+        Label5.Text = "Loai User:"
+        ' 
         ' TableLayoutPanel1
         ' 
         TableLayoutPanel1.ColumnCount = 2
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel1.Controls.Add(dgvDanhSach, 0, 1)
         TableLayoutPanel1.Controls.Add(Panel1, 1, 0)
         TableLayoutPanel1.Controls.Add(tbTimKiem, 0, 0)
@@ -255,7 +298,7 @@ Partial Class frmNhanVien
         ' 
         ' frmNhanVien
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1281, 450)
         Controls.Add(TableLayoutPanel1)
@@ -291,4 +334,8 @@ Partial Class frmNhanVien
     Friend WithEvents tbTen As TextBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents cbLoaiNhanVien As ComboBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents lIsAdmin As Label
+    Friend WithEvents bCapNhatRole As Button
 End Class

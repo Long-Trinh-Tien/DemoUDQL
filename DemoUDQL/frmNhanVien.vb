@@ -3,8 +3,12 @@
     Dim dsNhanVien As DataTable
     Dim dsNhanVienView As DataView
     Dim dsTaiKhoan As DataTable
+    Dim dsLoaiNhanVien As DataTable
     Sub HienThiDSNhanVien()
-        Dim truy_van As String = "SELECT nv_ma, nv_ten, nv_dia_chi, nv_gioi_tinh, nv_xoa, nv_ma_tai_khoan, tk_tai_khoan, tk_mat_khau, tk_dang_nhap_loi from NhanVien, TaiKhoan where nv_ma_tai_khoan = tk_ma and nv_xoa = " + cbHienThiXoa.Checked.ToString().ToLower()
+        Dim truy_van As String = "SELECT nv_ma, nv_ten, nv_dia_chi, nv_gioi_tinh, nv_xoa, nv_ma_tai_khoan, tk_tai_khoan, tk_mat_khau, tk_dang_nhap_loi, lnv_ten, nv_ma_loai_nhan_vien
+        from NhanVien, TaiKhoan, LoaiNhanVien
+        where nv_ma_loai_nhan_vien = lnv_ma
+        AND nv_ma_tai_khoan = tk_ma and nv_xoa = " + cbHienThiXoa.Checked.ToString().ToLower()
         dsNhanVien = XL_DuLieu.DocDuLieu(truy_van)
         dsNhanVienView = New DataView(dsNhanVien)
         dgvDanhSach.DataSource = dsNhanVienView
@@ -13,14 +17,34 @@
         dgvDanhSach.Columns(5).Visible = False
         dgvDanhSach.Columns(7).Visible = False
         dgvDanhSach.Columns(8).Visible = False
+        dgvDanhSach.Columns("nv_ma_loai_nhan_vien").Visible = False
 
         dgvDanhSach.Columns(3).HeaderText = "Nam"
+        dgvDanhSach.Columns("lnv_ten").HeaderText = "Loại NV"
 
     End Sub
 
     Private Sub frmNhanVien_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         HienThiDSNhanVien()
         dsTaiKhoan = XL_DuLieu.DocCautruc("SELECT * FROM TaiKhoan")
+
+        'Handle admin
+        If Me.Tag = True Then
+            lIsAdmin.Text = "Admin"
+            cbLoaiNhanVien.Enabled = True
+            bCapNhatRole.Enabled = True
+        Else
+            lIsAdmin.Text = "Non-Admin"
+            cbLoaiNhanVien.Enabled = False
+            bCapNhatRole.Enabled = False
+        End If
+
+        ' Tải danh sách Loại Nhân Viên và gán cho ComboBox
+        dsLoaiNhanVien = XL_DuLieu.DocDuLieu("SELECT * FROM LoaiNhanVien")
+        cbLoaiNhanVien.DataSource = dsLoaiNhanVien
+        cbLoaiNhanVien.DisplayMember = "lnv_ten" ' Hiển thị Tên loại
+        cbLoaiNhanVien.ValueMember = "lnv_ma"   ' Lấy giá trị ID loại
+        'bPhucHoi.Enabled = False ' Mặc định nút Phục hồi bị tắt khi form load
     End Sub
 
     Private Sub bThem_Click(sender As Object, e As EventArgs) Handles bThem.Click
@@ -41,6 +65,7 @@
         nhanVien("nv_ma_tai_khoan") = taiKhoan("tk_ma")
         nhanVien("tk_tai_khoan") = taiKhoan("tk_tai_khoan")
         nhanVien("tk_mat_khau") = taiKhoan("tk_mat_khau")
+        nhanVien("nv_ma_loai") = CInt(cbLoaiNhanVien.SelectedValue)
 
 
         dsNhanVien.Rows.Add(nhanVien)
@@ -81,6 +106,7 @@
             nhanVien("nv_dia_chi") = tbDiaChi.Text
             nhanVien("nv_gioi_tinh") = rbNam.Checked
             nhanVien("tk_mat_khau") = Util.getHash(tbMatKhau.Text)
+            nhanVien("nv_ma_loai_nhan_vien") = CInt(cbLoaiNhanVien.SelectedValue)
 
             XL_DuLieu.GhiDuLieu("nhanVien", dsNhanVien)
 
@@ -92,6 +118,7 @@
             MessageBox.Show("Da cap nhat", "Thong bao", MessageBoxButtons.OK)
             dsTaiKhoan.Rows.Remove(taiKhoan)
         End If
+        HienThiDSNhanVien()
     End Sub
 
     Private Sub bXoa_Click(sender As Object, e As EventArgs) Handles bXoa.Click
@@ -118,7 +145,12 @@
         HienThiDSNhanVien()
 
         If cbHienThiXoa.Checked Then
-            bPhucHoi.Enabled = True
+            'Check Admin Role
+            If Me.Tag = True Then
+                bPhucHoi.Enabled = True
+            Else
+                bPhucHoi.Enabled = False
+            End If
 
             bThem.Enabled = False
             bCapNhat.Enabled = False
@@ -171,6 +203,35 @@
                 rbNu.Checked = True
             End If
             tbTaiKhoan.Text = nhanVien("tk_tai_khoan")
+            cbLoaiNhanVien.Text = nhanVien("lnv_ten")
         End If
+    End Sub
+
+    Private Sub bCapNhatRole_Click(sender As Object, e As EventArgs) Handles bCapNhatRole.Click
+        If dgvDanhSach.SelectedCells.Count > 0 Then
+            Dim row_index As Integer = dgvDanhSach.SelectedCells(0).RowIndex
+            Dim nhanVienView As DataRowView = CType(dgvDanhSach.Rows(row_index).DataBoundItem, DataRowView)
+            Dim nhanVien As DataRow = nhanVienView.Row
+
+            Dim newRoleId As Integer = CInt(cbLoaiNhanVien.SelectedValue)
+            Dim oldRoleId As Integer = CInt(nhanVien("nv_ma_loai_nhan_vien"))
+
+            ' Kiểm tra xem Role có thực sự thay đổi không
+            If newRoleId = oldRoleId Then
+                MessageBox.Show("Vai trò chưa thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+
+            ' Cập nhật duy nhất trường nv_ma_loai_nhan_vien trong DataRow
+            nhanVien("nv_ma_loai_nhan_vien") = newRoleId
+
+            ' Ghi thay đổi vào Cơ sở dữ liệu (chỉ riêng cột này sẽ được cập nhật)
+            XL_DuLieu.GhiDuLieu("NhanVien", dsNhanVien)
+
+            MessageBox.Show("Cập nhật vai trò thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        End If
+        ' Hiển thị lại danh sách để cập nhật DataGridView
+        HienThiDSNhanVien()
     End Sub
 End Class
