@@ -25,6 +25,7 @@ Partial Class frmMain
         MenuStrip1 = New MenuStrip()
         ThongTinToolStripMenuItem = New ToolStripMenuItem()
         ThongTinPhanMemToolStripMenuItem = New ToolStripMenuItem()
+        BackupToolStripMenuItem = New ToolStripMenuItem()
         ThoatToolStripMenuItem = New ToolStripMenuItem()
         QuanLyToolStripMenuItem = New ToolStripMenuItem()
         LoaiSanPhamToolStripMenuItem = New ToolStripMenuItem()
@@ -39,9 +40,9 @@ Partial Class frmMain
         BanHangToolStripMenuItem1 = New ToolStripMenuItem()
         KhoToolStripMenuItem = New ToolStripMenuItem()
         DanhSachPhieuNhapToolStripMenuItem = New ToolStripMenuItem()
+        TonKhoToolStripMenuItem = New ToolStripMenuItem()
         ThongKeToolStripMenuItem = New ToolStripMenuItem()
         ThongKeDoanhThuToolStripMenuItem = New ToolStripMenuItem()
-        TonKhoToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -57,7 +58,7 @@ Partial Class frmMain
         ' 
         ' ThongTinToolStripMenuItem
         ' 
-        ThongTinToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ThongTinPhanMemToolStripMenuItem, ThoatToolStripMenuItem})
+        ThongTinToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ThongTinPhanMemToolStripMenuItem, BackupToolStripMenuItem, ThoatToolStripMenuItem})
         ThongTinToolStripMenuItem.Name = "ThongTinToolStripMenuItem"
         ThongTinToolStripMenuItem.Size = New Size(86, 24)
         ThongTinToolStripMenuItem.Text = "Thong tin"
@@ -67,6 +68,12 @@ Partial Class frmMain
         ThongTinPhanMemToolStripMenuItem.Name = "ThongTinPhanMemToolStripMenuItem"
         ThongTinPhanMemToolStripMenuItem.Size = New Size(230, 26)
         ThongTinPhanMemToolStripMenuItem.Text = "Thong tin phan mem"
+        ' 
+        ' BackupToolStripMenuItem
+        ' 
+        BackupToolStripMenuItem.Name = "BackupToolStripMenuItem"
+        BackupToolStripMenuItem.Size = New Size(230, 26)
+        BackupToolStripMenuItem.Text = "Backup Restore"
         ' 
         ' ThoatToolStripMenuItem
         ' 
@@ -154,6 +161,12 @@ Partial Class frmMain
         DanhSachPhieuNhapToolStripMenuItem.Size = New Size(238, 26)
         DanhSachPhieuNhapToolStripMenuItem.Text = "Danh sach phieu nhap"
         ' 
+        ' TonKhoToolStripMenuItem
+        ' 
+        TonKhoToolStripMenuItem.Name = "TonKhoToolStripMenuItem"
+        TonKhoToolStripMenuItem.Size = New Size(238, 26)
+        TonKhoToolStripMenuItem.Text = "Ton Kho"
+        ' 
         ' ThongKeToolStripMenuItem
         ' 
         ThongKeToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ThongKeDoanhThuToolStripMenuItem})
@@ -166,12 +179,6 @@ Partial Class frmMain
         ThongKeDoanhThuToolStripMenuItem.Name = "ThongKeDoanhThuToolStripMenuItem"
         ThongKeDoanhThuToolStripMenuItem.Size = New Size(231, 26)
         ThongKeDoanhThuToolStripMenuItem.Text = "Thong Ke Doanh Thu"
-        ' 
-        ' TonKhoToolStripMenuItem
-        ' 
-        TonKhoToolStripMenuItem.Name = "TonKhoToolStripMenuItem"
-        TonKhoToolStripMenuItem.Size = New Size(238, 26)
-        TonKhoToolStripMenuItem.Text = "Ton Kho"
         ' 
         ' frmMain
         ' 
@@ -210,5 +217,6 @@ Partial Class frmMain
     Friend WithEvents ThongKeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ThongKeDoanhThuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TonKhoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BackupToolStripMenuItem As ToolStripMenuItem
 
 End Class
